@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>APU & AUV for Business - Ngày trải nghiệm APU-er / AUV-er & học bổng đối tác</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F4EF;
+    --paper-raised:#ECE7DA;
+    --ink:#16213A;
+    --ink-soft:#5C6478;
+    --rule:#D9D2C0;
+    --crimson:#9E2B25;
+    --crimson-ink:#7A1F1B;
+    --gold:#B98A2E;
+    --blue:#2F5C96;
+    --on-crimson:#FBF3EE;
+    --font-display:'Libre Caslon Display', Georgia, 'Times New Roman', serif;
+    --font-body:'Public Sans', 'Segoe UI', Roboto, Arial, sans-serif;
+  }
+  :root:not([data-theme="light"]){
+    @media (prefers-color-scheme: dark){
+      --paper:#14110D;
+      --paper-raised:#1D1813;
+      --ink:#F0EAE0;
+      --ink-soft:#B7AF9F;
+      --rule:#392F22;
+      --crimson:#E7695F;
+      --crimson-ink:#F3958C;
+      --gold:#E0B15C;
+      --blue:#7FA6D9;
+      --on-crimson:#2A0E0B;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14110D;
+    --paper-raised:#1D1813;
+    --ink:#F0EAE0;
+    --ink-soft:#B7AF9F;
+    --rule:#392F22;
+    --crimson:#E7695F;
+    --crimson-ink:#F3958C;
+    --gold:#E0B15C;
+    --blue:#7FA6D9;
+    --on-crimson:#2A0E0B;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;} }
+
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--font-body); font-size:17px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .wrap{ max-width:1100px; margin:0 auto; padding:0 28px; }
+  .prose{ max-width:700px; }
+
+  /* top bar */
+  .topbar{ position:sticky; top:0; z-index:40; background:color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule); }
+  .topbar-inner{ max-width:1100px; margin:0 auto; padding:14px 28px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .brandmark{ font-family:var(--font-display); font-weight:400; font-size:1.05rem; }
+  .brandmark span{ color:var(--crimson-ink); }
+  .topbar .btn{ font-size:0.9rem; padding:9px 18px; }
+
+  .btn{ display:inline-block; font-family:var(--font-body); font-weight:700; font-size:1rem; padding:13px 26px; border-radius:2px; text-decoration:none; border:1.5px solid transparent; cursor:pointer; }
+  .btn-primary{ background:var(--crimson); color:var(--on-crimson); }
+  .btn-ghost{ background:transparent; border-color:var(--ink); color:var(--ink); }
+  .btn-on-crimson{ background:var(--on-crimson); color:var(--crimson-ink); }
+
+  /* hero */
+  .hero{ padding:72px 0 60px; border-bottom:1px solid var(--rule); }
+  .hero-grid{ display:grid; grid-template-columns:1.3fr 0.95fr; gap:56px; align-items:center; }
+  .eyebrow{ font-size:0.98rem; color:var(--ink-soft); margin:0 0 14px; }
+  h1.headline{ font-family:var(--font-display); font-weight:400; font-size:clamp(2rem, 4vw, 3.2rem); line-height:1.16; letter-spacing:-0.005em; margin:0 0 20px; }
+  .hero-sub{ font-size:1.1rem; color:var(--ink-soft); max-width:56ch; margin:0 0 28px; text-align:justify; text-justify:inter-word; }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:26px; }
+  .hero-fact{ font-size:0.96rem; color:var(--ink-soft); max-width:58ch; padding-top:16px; border-top:1px solid var(--rule); }
+  .hero-fact strong{ color:var(--ink); font-weight:700; }
+
+  /* visitor pass card */
+  .pass{
+    background:var(--paper-raised); border:1px solid var(--rule); border-radius:6px;
+    padding:26px 26px 22px; position:relative;
+  }
+  .pass-top{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:18px; }
+  .pass-kicker{ font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-soft); }
+  .pass-mark{ font-family:var(--font-display); color:var(--crimson-ink); font-size:1rem; }
+  .pass-title{ font-family:var(--font-display); font-size:1.5rem; line-height:1.25; margin:0 0 4px; }
+  .pass-title small{ display:block; font-family:var(--font-body); font-weight:600; font-size:0.82rem; color:var(--ink-soft); margin-top:4px; }
+  .pass-divider{ border:none; border-top:1px dashed var(--rule); margin:18px 0; }
+  .pass-field{ display:flex; justify-content:space-between; gap:10px; font-size:0.92rem; padding:7px 0; }
+  .pass-field .k{ color:var(--ink-soft); }
+  .pass-field .v{ font-weight:600; }
+  .pass-tbd{ color:var(--crimson-ink); font-style:italic; font-weight:600; }
+  @media (max-width:820px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .pass{ max-width:340px; margin:0 auto; }
+  }
+
+  /* generic section */
+  .section{ padding:60px 0; border-bottom:1px solid var(--rule); }
+  .section:last-of-type{ border-bottom:none; }
+  h2.section-title{ font-family:var(--font-display); font-weight:400; font-size:clamp(1.5rem, 2.6vw, 2rem); margin:0 0 24px; line-height:1.22; }
+  .section p{ color:var(--ink); text-align:justify; text-justify:inter-word; }
+  .section p + p{ margin-top:1.05em; }
+
+  .pullquote{
+    font-family:var(--font-display); font-size:1.35rem; line-height:1.45; color:var(--crimson-ink);
+    max-width:620px; margin:30px 0; padding-left:22px; border-left:3px solid var(--crimson);
+  }
+  .pullquote cite{ display:block; font-style:normal; font-family:var(--font-body); font-size:0.85rem; color:var(--ink-soft); margin-top:10px; }
+
+  /* fact grid */
+  .facts{ list-style:none; margin:32px 0 0; padding:0; display:grid; grid-template-columns:repeat(2,1fr); gap:2px; max-width:760px; }
+  .facts li{ background:var(--paper-raised); padding:20px 22px; border-left:3px solid var(--gold); }
+  .facts .f-num{ font-family:var(--font-display); font-size:1.3rem; display:block; margin-bottom:4px; }
+  .facts .f-label{ font-size:0.92rem; color:var(--ink-soft); }
+  @media (max-width:640px){ .facts{ grid-template-columns:1fr; } }
+
+  /* timetable */
+  .timetable{ list-style:none; margin:32px 0 0; padding:0; max-width:680px; }
+  .trow{ display:grid; grid-template-columns:110px 1fr; gap:20px; padding:18px 0; border-bottom:1px solid var(--rule); }
+  .trow:last-child{ border-bottom:none; }
+  .ttime{ font-family:var(--font-body); font-weight:700; font-variant-numeric:tabular-nums; color:var(--crimson-ink); }
+  .tdesc h3{ margin:0 0 4px; font-size:1.02rem; font-weight:700; }
+  .tdesc p{ margin:0; color:var(--ink-soft); font-size:0.96rem; }
+
+  .tbd-box{
+    margin-top:26px; padding:16px 18px; border:1.5px dashed var(--crimson); border-radius:4px;
+    font-size:0.92rem; color:var(--crimson-ink); max-width:680px; background:color-mix(in srgb, var(--crimson) 6%, transparent);
+  }
+  .tbd-box strong{ display:block; margin-bottom:4px; }
+
+  /* scholarship highlight */
+  .scholar-box{
+    margin-top:30px; padding:30px; background:var(--paper-raised); border:1px solid var(--rule); border-radius:6px; max-width:700px;
+  }
+  .scholar-box .big{ font-family:var(--font-display); font-size:2rem; color:var(--crimson-ink); display:block; margin-bottom:6px; }
+
+  /* proof list */
+  .proof-list{ list-style:none; margin:30px 0 0; padding:0; max-width:700px; }
+  .proof-list li{ padding:12px 0; border-bottom:1px dotted var(--rule); }
+  .proof-list li:last-child{ border-bottom:none; }
+
+  /* steps */
+  .steps{ list-style:none; margin:32px 0 0; padding:0; max-width:640px; }
+  .step{ display:grid; grid-template-columns:40px 1fr; gap:18px; position:relative; padding-bottom:32px; }
+  .step:last-child{ padding-bottom:0; }
+  .step::before{ content:""; position:absolute; left:19px; top:40px; bottom:0; width:1px; background:var(--rule); }
+  .step:last-child::before{ display:none; }
+  .step-num{ width:40px; height:40px; border-radius:50%; border:1.5px solid var(--ink); display:flex; align-items:center; justify-content:center; font-family:var(--font-display); flex:none; background:var(--paper); }
+  .step h3{ font-weight:700; font-size:1.04rem; margin:6px 0 6px; }
+  .step p{ margin:0; color:var(--ink-soft); }
+
+  /* closing */
+  .closing{ background:var(--crimson); color:var(--on-crimson); padding:70px 0 56px; }
+  .closing h2{ font-family:var(--font-display); font-weight:400; font-size:clamp(1.6rem,3.2vw,2.3rem); max-width:22ch; margin:0 0 16px; line-height:1.2; }
+  .closing p{ max-width:58ch; font-size:1.06rem; opacity:0.92; margin:0 0 28px; text-align:justify; text-justify:inter-word; }
+  .contact-list{ list-style:none; margin:32px 0 0; padding:22px 0 0; border-top:1px solid color-mix(in srgb, var(--on-crimson) 35%, transparent); display:grid; gap:10px; max-width:520px; }
+  .contact-list li{ display:flex; gap:10px; font-size:0.97rem; }
+  .contact-list .label{ opacity:0.75; min-width:10em; }
+  .contact-list a{ text-decoration:underline; }
+  .contact-list .tbd{ font-style:italic; opacity:0.85; }
+
+  footer{ padding:28px 0 56px; color:var(--ink-soft); font-size:0.85rem; }
+  footer p{ margin:0.3em 0; }
+
+  @keyframes rise{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+  .hero-grid > *{ animation:rise 0.7s ease both; }
+  .hero-grid > *:nth-child(2){ animation-delay:0.08s; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brandmark">APU <span>&amp; AUV</span> for Business</div>
+    <a class="btn btn-primary" href="#dang-ky">Đăng ký hợp tác</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Dành cho trường THPT, trung tâm Anh ngữ &amp; tổ chức giáo dục</p>
+      <h1 class="headline">Một ngày làm APU-er, một ngày làm AUV-er - cho học sinh của bạn.</h1>
+      <p class="hero-sub">Tập đoàn Phát triển Giáo dục APU mời các trường học, trung tâm tiếng Anh và tổ chức giáo dục cùng đưa học sinh đến trải nghiệm "A Day as an APU-er" và "A Day as an AUV-er" - một ngày học thực thụ trong môi trường giáo dục chuẩn Hoa Kỳ, đi kèm cơ hội học bổng giá trị.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#dang-ky">Đăng ký đưa học sinh tham gia</a>
+        <a class="btn btn-ghost" href="#hoc-bong">Tìm hiểu học bổng đối tác</a>
+      </div>
+      <p class="hero-fact">Hơn <strong>25 năm</strong> đào tạo chuẩn Hoa Kỳ liên thông từ Mầm non đến Đại học, được kiểm định bởi <strong>Cognia™</strong> và <strong>CIS</strong>, cùng hơn <strong>30 triệu USD</strong> học bổng đại học quốc tế trao cho học sinh tốt nghiệp trong năm 2026.</p>
+    </div>
+
+    <div class="pass" aria-hidden="true">
+      <div class="pass-top">
+        <span class="pass-kicker">THẺ TRẢI NGHIỆM</span>
+        <span class="pass-mark">APU · AUV</span>
+      </div>
+      <p class="pass-title">A Day as an APU-er<small>hoặc "A Day as an AUV-er"</small></p>
+      <hr class="pass-divider">
+      <div class="pass-field"><span class="k">Họ tên học sinh</span><span class="v">……………………</span></div>
+      <div class="pass-field"><span class="k">Trường / Trung tâm</span><span class="v">……………………</span></div>
+      <div class="pass-field"><span class="k">Ngày trải nghiệm</span><span class="v pass-tbd">Sẽ thông báo</span></div>
+      <div class="pass-field"><span class="k">Địa điểm</span><span class="v">Campus APU &amp; AUV, Đà Nẵng</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="vi-sao">
+  <div class="wrap prose">
+    <h2 class="section-title">Vì sao nên đồng hành cùng APU &amp; AUV</h2>
+    <p>Nhiều trường học và trung tâm Anh ngữ mong muốn cho học sinh của mình một trải nghiệm thực tế về con đường du học, thay vì chỉ dừng lại ở những buổi tư vấn trên giấy. Nhưng để tổ chức một chuyến tham quan campus chuẩn quốc tế, kết nối với đội ngũ tuyển sinh uy tín và mở ra cơ hội học bổng thực sự cho học sinh - đó là điều không phải đơn vị nào cũng tự làm được.</p>
+    <p>Đó là lý do APU &amp; AUV mở cửa campus của mình. Không chỉ là một buổi tham quan, "A Day as an APU-er" và "A Day as an AUV-er" là một ngày học sinh của bạn được sống thật trong môi trường giáo dục chuẩn Hoa Kỳ - và đơn vị của bạn có thêm một điểm cộng thiết thực để mang đến cho phụ huynh, học sinh của mình.</p>
+  </div>
+</section>
+
+<section class="section" id="gioi-thieu">
+  <div class="wrap prose">
+    <h2 class="section-title">Tập đoàn Phát triển Giáo dục APU - Hệ thống giáo dục chuẩn Hoa Kỳ từ Mầm non đến Đại học</h2>
+    <p>Tập đoàn Phát triển Giáo dục APU vận hành hai đơn vị: Trường Quốc tế Hoa Kỳ APU (bậc Mầm non đến lớp 12) và Trường Đại học Mỹ tại Việt Nam - AUV, cùng đặt tại Đà Nẵng. Trong hơn 25 năm, APU đã đồng hành cùng nhiều thế hệ gia đình Việt Nam trên hành trình tiếp cận nền giáo dục chuẩn Hoa Kỳ ngay tại Việt Nam.</p>
+    <p>APU được kiểm định và công nhận bởi Cognia™ - một trong những tổ chức kiểm định giáo dục lớn nhất thế giới - và Hội đồng các trường Quốc tế (CIS), đồng thời là thành viên duy nhất tại Việt Nam của Viện Giáo dục Quốc tế Hoa Kỳ (IIE). Riêng chương trình Cầu nối Đại học (College Bridge Program), gồm Dual Enrollment Program và Global Freshman Academy, là chương trình độc quyền chỉ có tại APU, giúp học sinh tích lũy tín chỉ đại học ngay từ bậc phổ thông và hoàn thành chương trình Cử nhân tại Mỹ chỉ trong khoảng hai năm sau khi tốt nghiệp THPT.</p>
+
+    <ul class="facts">
+      <li><span class="f-num">100%</span><span class="f-label">học sinh tốt nghiệp APU nhận học bổng từ các trường đại học đối tác</span></li>
+      <li><span class="f-num">30tr USD</span><span class="f-label">học bổng đại học quốc tế trao cho học sinh tốt nghiệp năm 2026</span></li>
+      <li><span class="f-num">90%</span><span class="f-label">cựu học sinh, sinh viên đạt kết quả xuất sắc, có tên trong Dean's List ngay học kỳ đầu du học</span></li>
+      <li><span class="f-num">Top 10</span><span class="f-label">Thương hiệu mạnh quốc gia 2024, vinh danh tại Chương trình Doanh nhân Mừng Xuân</span></li>
+    </ul>
+
+    <p class="pullquote">
+      Với tài năng, sự nỗ lực bền bỉ và khát vọng vươn ra thế giới, các thế hệ học sinh APU &amp; AUV sẽ tiếp tục vẽ nên một bức tranh tương lai rực rỡ.
+      <cite>Phỏng theo lời chia sẻ của TS. Trần Nguyễn Thy Bình, Chủ tịch Tập đoàn Phát triển Giáo dục APU</cite>
+    </p>
+  </div>
+</section>
+
+<section class="section" id="mot-ngay">
+  <div class="wrap prose" style="max-width:760px;">
+    <h2 class="section-title">Một ngày làm APU-er / AUV-er trông như thế nào</h2>
+    <p>Học sinh từ trường hoặc trung tâm của bạn sẽ không chỉ tham quan campus, mà thực sự bước vào một ngày học tại APU (bậc phổ thông) hoặc AUV (bậc đại học) - gặp gỡ giảng viên, sinh viên hiện tại, và tìm hiểu trực tiếp lộ trình du học Mỹ không cần IELTS, SAT hay ACT.</p>
+
+    <ul class="timetable">
+      <li class="trow">
+        <span class="ttime">Sáng</span>
+        <div class="tdesc"><h3>Đón đoàn &amp; giới thiệu tổng quan</h3><p>Giới thiệu về Tập đoàn Phát triển Giáo dục APU, mô hình đào tạo liên thông Mầm non – Đại học và lộ trình du học Mỹ.</p></div>
+      </li>
+      <li class="trow">
+        <span class="ttime">Giữa buổi</span>
+        <div class="tdesc"><h3>Tham quan campus APU &amp; AUV</h3><p>Khám phá cơ sở vật chất, phòng học, không gian sinh hoạt theo chuẩn Hoa Kỳ.</p></div>
+      </li>
+      <li class="trow">
+        <span class="ttime">Trưa</span>
+        <div class="tdesc"><h3>Trải nghiệm một tiết học thực tế</h3><p>Dự giờ cùng học sinh, sinh viên APU-er / AUV-er; trò chuyện cùng giảng viên bản ngữ.</p></div>
+      </li>
+      <li class="trow">
+        <span class="ttime">Chiều</span>
+        <div class="tdesc"><h3>Tư vấn học bổng &amp; lộ trình cá nhân hóa</h3><p>Đội ngũ tuyển sinh trao đổi trực tiếp với học sinh và đại diện đơn vị đối tác về học bổng và College Bridge Program.</p></div>
+      </li>
+    </ul>
+
+    <div class="tbd-box">
+      <strong>Lịch trình cụ thể</strong>
+      Khung giờ trên là ví dụ minh họa. Ngày giờ, địa điểm tập trung và số lượng học sinh tối đa cho mỗi đợt "A Day as an APU-er / AUV-er" sẽ được đội ngũ APU &amp; AUV xác nhận trực tiếp với đơn vị đối tác khi đăng ký.
+    </div>
+  </div>
+</section>
+
+<section class="section" id="hoc-bong">
+  <div class="wrap prose" style="max-width:760px;">
+    <h2 class="section-title">Học bổng dành cho học sinh đến từ đơn vị đối tác</h2>
+    <p>Học sinh tốt nghiệp hệ thống APU đang được AUV xét học bổng linh hoạt, dao động từ 30% đến 100% học phí toàn khóa Cử nhân, tùy theo thành tích học tập - giúp các em hoàn thành chương trình đại học tại AUV rồi tiếp tục thẳng lên Thạc sĩ, Tiến sĩ tại các đại học Mỹ mà không cần nộp điểm GMAT/GRE.</p>
+
+    <div class="scholar-box">
+      <span class="big">30% – 100%</span>
+      Mức học bổng học phí đang áp dụng cho học sinh hệ thống APU khi vào AUV, xét theo thành tích học tập.
+    </div>
+
+    <div class="tbd-box">
+      <strong>Ưu đãi riêng cho đối tác</strong>
+      Mức học bổng và điều kiện xét duyệt dành riêng cho học sinh do đơn vị đối tác giới thiệu tham gia ngày trải nghiệm sẽ được đội ngũ tuyển sinh APU &amp; AUV trao đổi cụ thể trong buổi tư vấn hợp tác.
+    </div>
+  </div>
+</section>
+
+<section class="section" id="vi-sao-tin-tuong">
+  <div class="wrap prose">
+    <h2 class="section-title">Vì sao chọn đồng hành cùng APU &amp; AUV</h2>
+    <ul class="proof-list">
+      <li>Hơn 25 năm đào tạo chương trình chuẩn Hoa Kỳ, được Bộ Giáo dục và Đào tạo cấp phép giảng dạy cho học sinh Việt Nam và quốc tế.</li>
+      <li>Kiểm định bởi Cognia™ và Hội đồng các trường Quốc tế (CIS); thành viên duy nhất tại Việt Nam của Viện Giáo dục Quốc tế Hoa Kỳ (IIE).</li>
+      <li>Vinh danh Top 10 Thương hiệu mạnh quốc gia tại Chương trình Doanh nhân, Doanh nghiệp Mừng Xuân 2024.</li>
+      <li>AUV vừa ký kết Biên bản ghi nhớ hợp tác cùng Tecotec Group để đào tạo kỹ sư ngành bán dẫn - mở rộng cơ hội nghề nghiệp cho sinh viên trong lĩnh vực công nghệ cao.</li>
+      <li>Cựu học sinh, sinh viên APU &amp; AUV hiện là Thạc sĩ, Tiến sĩ, Nha sĩ, giảng viên đại học và nhà sáng lập doanh nghiệp tại Mỹ và nhiều quốc gia trên thế giới.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="quy-trinh" style="border-bottom:none;">
+  <div class="wrap prose">
+    <h2 class="section-title">Bốn bước để trường hoặc trung tâm của bạn tham gia</h2>
+    <ol class="steps">
+      <li class="step">
+        <span class="step-num">1</span>
+        <div><h3>Kết nối</h3><p>Gửi thông tin đơn vị qua website apu.edu.vn hoặc auv.edu.vn để được đội ngũ hợp tác liên hệ.</p></div>
+      </li>
+      <li class="step">
+        <span class="step-num">2</span>
+        <div><h3>Xác nhận đợt trải nghiệm</h3><p>Thống nhất ngày tham gia, số lượng học sinh và hình thức trải nghiệm phù hợp - "A Day as an APU-er" hoặc "A Day as an AUV-er".</p></div>
+      </li>
+      <li class="step">
+        <span class="step-num">3</span>
+        <div><h3>Tham gia ngày trải nghiệm</h3><p>Học sinh tham quan campus, dự giờ lớp học thực tế và giao lưu cùng học sinh, sinh viên APU-er / AUV-er.</p></div>
+      </li>
+      <li class="step">
+        <span class="step-num">4</span>
+        <div><h3>Nhận tư vấn học bổng</h3><p>Đội ngũ tuyển sinh trao đổi lộ trình học bổng và học tập dành riêng cho học sinh của đơn vị đối tác.</p></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="closing" id="dang-ky">
+  <div class="wrap">
+    <h2>Mở ra một ngày trải nghiệm đáng nhớ cho học sinh của bạn.</h2>
+    <p>Dù là trường THPT hay trung tâm Anh ngữ, APU &amp; AUV luôn sẵn sàng đồng hành để học sinh của bạn có một ngày học thực thụ trong môi trường giáo dục chuẩn Hoa Kỳ - và một cơ hội học bổng thực sự để bước ra thế giới.</p>
+    <a class="btn btn-on-crimson" href="https://apu.edu.vn/" target="_blank" rel="noopener">Tìm hiểu thêm tại apu.edu.vn</a>
+    <ul class="contact-list">
+      <li><span class="label">Trường quốc tế APU</span><a href="https://apu.edu.vn/" target="_blank" rel="noopener">apu.edu.vn</a></li>
+      <li><span class="label">Đại học Mỹ tại VN - AUV</span><a href="https://auv.edu.vn/" target="_blank" rel="noopener">auv.edu.vn</a></li>
+      <li><span class="label">Hotline hợp tác</span><span class="tbd">Sẽ bổ sung</span></li>
+      <li><span class="label">Email hợp tác</span><span class="tbd">Sẽ bổ sung</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Tập đoàn Phát triển Giáo dục APU - Trường Quốc tế Hoa Kỳ APU &amp; Trường Đại học Mỹ tại Việt Nam (AUV).</p>
+    <p>Đà Nẵng, Việt Nam.</p>
+  </div>
+</footer>
+
+</body>
+</html>
